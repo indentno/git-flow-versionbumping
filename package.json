@@ -1,6 +1,6 @@
 {
   "name": "git-flow-versionbumping",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically update the version property in package.json or composer.json when starting a release or hotfix through git flow.",
   "repository": {
     "type": "git",
@@ -12,5 +12,5 @@
   "bugs": {
     "url": "https://github.com/Sempro/git-flow-versionbumping/issues"
   },
-  "homepage": "https://github.com/Sempro/git-flow-versionbumping",
+  "homepage": "https://github.com/Sempro/git-flow-versionbumping"
 }
