@@ -27,9 +27,16 @@ exec('git config --get gitflow.versionbumping', (err, value, stderr) => {
 		bumpVersion('composer.json', content, 4);
 	} catch (e) {
 		try {
-			const content = JSON.parse(fs.readFileSync(path.join(directory, 'package.json'), 'utf-8'));
-
-			bumpVersion('package.json', content);
+      exec(`npm version --no-git-tag-version ${version}`, {
+        cwd: directory,
+      },
+      (err, value, stderr) => {
+        if (err) {
+          console.log(err, value, stderr);
+        } else {
+          console.log(`Bumped package.json version to ${version}`);
+        }
+      })
 		} catch (e) {
 
 		}

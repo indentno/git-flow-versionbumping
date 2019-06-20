@@ -1,6 +1,6 @@
 {
   "name": "git-flow-versionbumping",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Automatically update the version property in package.json or composer.json when starting a release or hotfix through git flow.",
   "repository": {
     "type": "git",
