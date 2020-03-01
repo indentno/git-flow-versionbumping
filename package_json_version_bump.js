@@ -7,40 +7,40 @@ const version = args[3];
 const directory = args[2];
 
 // Check the git config to see if versionbumping is enabled
-exec('git config --get gitflow.versionbumping', (err, value, stderr) => {
+exec('git config --get gitflow.versionbumping', (err, versionBumpingIsEnabled, stderr) => {
   if (err) {
     // Not defined in config, ignoring further actions
     return;
   }
 
   try {
-  	value = JSON.parse(value);
+    versionBumpingIsEnabled = JSON.parse(versionBumpingIsEnabled);
   } catch (err) {
-  	value = false;
+    versionBumpingIsEnabled = false;
   }
 
-  if (JSON.parse(value) === true) {
-  	// We check for a composer.json file first, if it does not exist, read package.json
-  	try {
-		const content = JSON.parse(fs.readFileSync(path.join(directory, 'composer.json'), 'utf-8'));
-
-		bumpVersion('composer.json', content, 4);
-	} catch (e) {
-		try {
-			const content = JSON.parse(fs.readFileSync(path.join(directory, 'package.json'), 'utf-8'));
-
-			bumpVersion('package.json', content);
-		} catch (e) {
-
-		}
-	}
+  if (versionBumpingIsEnabled) {
+    // We check for a composer.json file first, if it does not exist, read package.json
+    if (fs.existsSync(path.join(directory, 'composer.json'))) {
+      bumpVersion('composer.json', 4);
+    } else if (fs.existsSync(path.join(directory, 'package.json'))) {
+      bumpVersion('package.json');
+    }
   }
 });
 
-function bumpVersion(file, content, tabSize = 2) {
-	content.version = version;
+function bumpVersion(file, tabSize = 2) {
+  let content = fs.readFileSync(path.join(directory, file), 'utf-8');
 
-	fs.writeFileSync(path.join(directory, file), JSON.stringify(content, null, tabSize));
+  try {
+    content = JSON.parse(content);
+  } catch (e) {
+    content = {};
+  }
 
-	console.log(`Bumped ${file} version to ${version}`);
+  content.version = version;
+
+  fs.writeFileSync(path.join(directory, file), JSON.stringify(content, null, tabSize));
+
+  console.log(`Bumped ${file} version to ${version}`);
 }
