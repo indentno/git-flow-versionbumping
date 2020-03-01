@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Runs during git flow hotfix start
+#
+# Positional arguments:
+# $1 Version
+#
+# Return VERSION - When VERSION is returned empty, git-flow will stop as the
+# version is necessary
+#
+# The following variables are available as they are exported by git-flow:
+#
+# MASTER_BRANCH - The branch defined as Master
+# DEVELOP_BRANCH - The branch defined as Develop
+
+VERSION=$1
+SCRIPT_PATH="$0"
+ROOT_DIR=$(git rev-parse --show-toplevel 2> /dev/null)
+
+# If version is not defined we will try to resolve the correct version
+if [ -z "$VERSION" ]
+then
+  node "$(dirname "$SCRIPT_PATH")"/version_bumper.js "$ROOT_DIR" "hotfix"
+fi
+
+echo "$VERSION"
+exit 0
