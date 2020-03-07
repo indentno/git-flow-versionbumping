@@ -13,19 +13,6 @@ function getVersionFilePath(directory) {
   return null;
 }
 
-// Attempts to read the version number. Defaults to '0.0.0' if no version is defined.
-function readVersionNumber(filePath) {
-  let contents = fs.readFileSync(filePath, 'utf-8');
-
-  try {
-    contents = JSON.parse(contents);
-  } catch (e) {
-    contents = {};
-  }
-
-  return contents.version || '0.0.0';
-}
-
 function writeVersionNumber(filePath, version) {
   let contents = fs.readFileSync(filePath, 'utf-8');
   let tabSize = 2;
@@ -73,7 +60,6 @@ function determineNextVersion(previousVersionNumber, flowType) {
 
 module.exports = {
   getVersionFilePath,
-  readVersionNumber,
   writeVersionNumber,
   determineNextVersion,
 };
