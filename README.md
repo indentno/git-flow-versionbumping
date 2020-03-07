@@ -1,7 +1,12 @@
 git-flow-versionbumping
 ==============
 
-Version bumping for [git-flow (AVH Edition)][1].
+> Version bumping for [git-flow (AVH Edition)][1].
+
+[![Latest Version on NPM](https://img.shields.io/npm/v/git-flow-versionbumping.svg?style=flat-square)](https://npmjs.com/package/git-flow-versionbumping)
+[![npm downloads](https://img.shields.io/npm/dm/git-flow-versionbumping.svg?style=flat-square)](http://badge.fury.io/js/git-flow-versionbumping)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 This package updates your version in either the composer.json file or package.json file based on the version from either the `git flow release start` command or the `git flow hotfix start` command. If a composer.json file is present in your git project, the version property will be updated. If the composer.json file is not present, the package will look for a package.json file and update the version there.
 
