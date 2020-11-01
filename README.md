@@ -46,8 +46,6 @@ git config gitflow.hotfix.finish.message "Hotfix %tag%"
 git config gitflow.release.finish.message "Release %tag%"
 ```
 
-If you like, you can change the tag-placeholder (`%tag%` in the example above) in the git-flow-hooks configuration.
-
 License
 =======
 
