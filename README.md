@@ -46,6 +46,13 @@ git config gitflow.hotfix.finish.message "Hotfix %tag%"
 git config gitflow.release.finish.message "Release %tag%"
 ```
 
+If you want to always automate tag messages, you can add the `--global` flag to the above commands:
+
+```sh
+git config --global gitflow.hotfix.finish.message "Hotfix %tag%"
+git config --global gitflow.release.finish.message "Release %tag%"
+```
+
 License
 =======
 
